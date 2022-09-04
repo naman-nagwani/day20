@@ -1,5 +1,9 @@
 package com.bridgelabz;
 
+import com.bridgelabz.exceptions.InvalidEMailException;
+import com.bridgelabz.exceptions.InvalidNameException;
+import com.bridgelabz.exceptions.InvalidPasswordException;
+import com.bridgelabz.exceptions.InvalidPhoneNumberException;
 import org.junit.Test;
 import org.junit.experimental.theories.ParametersSuppliedBy;
 import org.junit.runner.RunWith;
@@ -51,49 +55,49 @@ public class RegexJunit {
     }
 
     @Test
-    public void firstNameHappy() {
+    public void firstNameHappy() throws InvalidNameException {
         UserDetails userDetails = new UserDetails();
         boolean output = UserDetails.validateName("Naman");
         assertEquals(true, output);
     }
 
     @Test
-    public void firstNameSad() {
+    public void firstNameSad() throws InvalidNameException {
         UserDetails userDetails = new UserDetails();
         boolean output = UserDetails.validateName("naman");
         assertEquals(false, output);
     }
 
     @Test
-    public void phoneNumberHappy() {
+    public void phoneNumberHappy() throws InvalidPhoneNumberException {
         UserDetails userDetails = new UserDetails();
         boolean output = UserDetails.validatePhoneNumber("91 1234567890");
         assertEquals(true, output);
     }
 
     @Test
-    public void phoneNumberSad() {
+    public void phoneNumberSad() throws InvalidPhoneNumberException {
         UserDetails userDetails = new UserDetails();
         boolean output = UserDetails.validatePhoneNumber("hi@@gmail.com");
         assertEquals(false, output);
     }
 
     @Test
-    public void passwordHappy() {
+    public void passwordHappy() throws InvalidPasswordException {
         UserDetails userDetails = new UserDetails();
         boolean output = UserDetails.validatePassword("hi5!There");
         assertEquals(true, output);
     }
 
     @Test
-    public void passwordSad() {
+    public void passwordSad() throws InvalidPasswordException{
         UserDetails userDetails = new UserDetails();
         boolean output = UserDetails.validatePassword("hi!!therekfjslkf");
         assertEquals(false, output);
     }
 
     @Test
-    public void emailTest() {
+    public void emailTest() throws InvalidEMailException {
         UserDetails userDetails = new UserDetails();
         boolean output = UserDetails.validateEMail(input);
         assertEquals(expectedResult, output);
